@@ -20,4 +20,8 @@ public class Probability {
         return (int) count;
     }
 
+    public double notOccuring() {
+        return 1-count;
+    }
+
 }

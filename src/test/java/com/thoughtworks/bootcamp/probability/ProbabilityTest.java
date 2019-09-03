@@ -15,5 +15,10 @@ public class ProbabilityTest {
         assertTrue(probability1.equals(probability2));
     }
 
+    @Test
+    void givenProbabilityOfEventPointFive_WhenNotOccuring_ThenReturnPointFive() {
+        Probability probability=new Probability(0.5f);
+        assertEquals(0.5,probability.notOccuring());
+    }
 
 }
