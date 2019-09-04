@@ -2,9 +2,9 @@ package com.thoughtworks.bootcamp.probability;
 
 public class Probability {
 
-    private float count;
+    private final float value;
     Probability(float count){
-        this.count=count;
+        this.value =count;
     }
 
     @Override
@@ -12,16 +12,23 @@ public class Probability {
         if(this==obj)
             return true;
 
-        Probability p=(Probability) obj;
-        return count==p.count;
+       Probability that=(Probability) obj;
+        return this.value==that.value;
     }
     @Override
     public int hashCode() {
-        return (int) count;
+        return  (int) value;
     }
 
-    public double notOccuring() {
-        return 1-count;
+    public Probability notOccurring() {
+        return new Probability(1.0f-value);
     }
 
+    public Probability occurringTogether(Probability event) {
+        return new Probability(value * event.value);
+    }
+
+    public Object or(Probability pointFiveProbability2) {
+        return new Probability(0.0f);
+    }
 }
