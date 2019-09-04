@@ -26,27 +26,33 @@ public class ProbabilityTest {
 
     @Test
     void givenPointFiveOccurrenceProbability_WhenChecksNonOccurredProbability_ThenReturnsPointFive() {
-        assertEquals(certainEvent, impossibleEvent.notOccurring());
+        assertEquals(certainEvent, impossibleEvent.not());
     }
 
     @Test
     void givenOneOcuProbability_WhenChecksUnoccuredProbability_ThenReturnsZero() {
-        assertEquals(impossibleEvent, certainEvent.notOccurring());
+        assertEquals(impossibleEvent, certainEvent.not());
     }
 
     @Test
     void givenTwoZeroProbabilites_WhenCalculatingProbabilityOfEventsOccuringTogether_ThenReturnsZero() {
-        assertEquals(impossibleEvent, impossibleEvent.occurringTogether(impossibleEvent));
+        assertEquals(impossibleEvent, impossibleEvent.and(impossibleEvent));
     }
 
     @Test
     void givenPointThreeProbability_WhenCalculatingProbabilityOfEventsOccurringTogether_ThenReturnsPointNine() {
         Probability pointThreeProbability= new Probability(0.5f);
-        assertEquals(new Probability(0.25f), pointThreeProbability.occurringTogether(pointThreeProbability));
+        assertEquals(new Probability(0.25f), pointThreeProbability.and(pointThreeProbability));
     }
 
     @Test
     void givenTwoZeroNonOccurringProbability_WhenCalculatedTogether_ThenReturnProbabilities() {
         assertEquals(impossibleEvent,impossibleEvent.or(impossibleEvent));
     }
+
+    @Test
+    void givenTwoOneNonOccurringProbability_WhenCalculatedTogether_ThenReturnProbabilities() {
+        assertEquals(impossibleEvent,certainEvent.or(certainEvent));
+    }
+
 }

@@ -20,15 +20,15 @@ public class Probability {
         return  (int) value;
     }
 
-    public Probability notOccurring() {
+    public Probability not() {
         return new Probability(1.0f-value);
     }
 
-    public Probability occurringTogether(Probability event) {
+    public Probability and(Probability event) {
         return new Probability(value * event.value);
     }
 
-    public Object or(Probability pointFiveProbability2) {
-        return new Probability(0.0f);
+    public Probability or(Probability event) {
+        return new Probability(value).not().and(event);
     }
 }
