@@ -20,7 +20,7 @@ public class Probability {
         return  (int) value;
     }
 
-    public Probability not() {
+    public Probability notOccurrence() {
         return new Probability(1.0f-value);
     }
 
@@ -29,6 +29,6 @@ public class Probability {
     }
 
     public Probability or(Probability event) {
-        return new Probability(value).not().and(event);
+        return new Probability(value).notOccurrence().and(new Probability(event.value).notOccurrence()).notOccurrence();
     }
 }
